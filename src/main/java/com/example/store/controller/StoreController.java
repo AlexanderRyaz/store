@@ -7,20 +7,17 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-@Scope("request")
 @RestController
 @RequestMapping("/order")
 public class StoreController {
     @Autowired
     private StoreService storeService;
 @PostMapping("add")
-public void add(@RequestParam("ids") int[] ids, HttpServletRequest request){
-    String id = request.getSession().getId();
-    storeService.add(id,ids);
+public void add(@RequestParam("ids") int[] ids){
+    storeService.add(ids);
 }
 @GetMapping("get")
     public List<Integer>get(HttpServletRequest request){
-    String id = request.getSession().getId();
-    return storeService.get(id);
+    return storeService.get();
 }
 }
